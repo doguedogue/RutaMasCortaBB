@@ -7,27 +7,20 @@ package com.dodosw;
 
 //state space tree nodes 
 public class Node {
-	// stores the parent node of the current node 
-	// helps in tracing path when the answer is found 
 	private Node parent; 
 
-	// stores matrix 
-	private int mat[][]; 
-
-	// stores blank tile coordinates 
 	private int x, y; 
-
-	// stores the number of misplaced tiles 
+ 
 	private int cost; 
 
 	// stores the number of moves so far 
 	private int level; 
-
-	private  int N;
 	
-	public Node(int n) {
-		N= n;
-		mat = new int[N][N];
+	public Node(int x, int y, int level, Node parent) {
+		this.x= x;
+		this.y= y;
+		this.level = level;
+		this.parent = parent;
 	}
 
 	public Node getParent() {
@@ -36,14 +29,6 @@ public class Node {
 
 	public void setParent(Node parent) {
 		this.parent = parent;
-	}
-
-	public int[][] getMat() {
-		return mat;
-	}
-
-	public void setMat(int[][] mat) {
-		this.mat = mat;
 	}
 
 	public int getX() {
@@ -78,11 +63,16 @@ public class Node {
 		this.level = level;
 	}
 
-	public int getN() {
-		return N;
-	}
-
-	public void setN(int n) {
-		N = n;
+	public boolean equals(Node node) {
+		if (getX() != node.getX())
+			return false;
+		if (getY() != node.getY())
+			return false;		
+		if (getLevel() != node.getLevel())
+			return false;
+		if (getCost() != node.getCost())
+			return false;
+		return true;
+		
 	}
 }
